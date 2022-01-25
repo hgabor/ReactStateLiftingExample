@@ -3,29 +3,18 @@ import ColorListItem from "./ColorListItem";
 
 
 export default class ColorList extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            colors: [
-                '#ff0000',
-                '#ffff55',
-                '#abcdef',
-            ],
-        }
-    }
 
     handleColorChange(index, newColor) {
         const newColors = [
-            ...this.state.colors.slice(0, index),
+            ...this.props.colors.slice(0, index),
             newColor,
-            ...this.state.colors.slice(index + 1),
+            ...this.props.colors.slice(index + 1),
         ];
-        this.setState({ colors: newColors });
+        this.props.onChange(newColors);
     }
 
     render() {
-        const { colors } = this.state;
+        const { colors } = this.props;
         return <ul>
             { colors.map((color, index) => <li>
                 <ColorListItem
